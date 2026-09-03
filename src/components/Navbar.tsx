@@ -127,6 +127,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden sm:inline">Export Code</span>
           </button>
 
+          {/* Desktop App Download */}
+          <a
+            href="https://github.com/rjnarwal/regexforge/releases"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs text-emerald-400 font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+            title="Download RegexForge Native Desktop App (Mac / Windows / Linux)"
+          >
+            <span className="hidden sm:inline">Desktop App ▾</span>
+            <span className="sm:hidden">App ▾</span>
+          </a>
+
           {/* Clear Workspace */}
           <button
             onClick={onClearWorkspace}
