@@ -13,6 +13,13 @@
     "build:win": "npm run build && electron-builder --win",
     "preview": "vite preview"
   },
+  "description": "RegexForge - Real-Time Regular Expression Visualizer, Parser, Tester & Multi-Language Code Generator",
+  "author": {
+    "name": "Rajesh Narwal",
+    "email": "rajesh@grassroot.digital",
+    "url": "https://grassroot.digital"
+  },
+  "homepage": "https://regexforge.grassroot.digital",
   "build": {
     "appId": "digital.grassroot.regexforge",
     "productName": "RegexForge",
@@ -35,6 +42,7 @@
     "linux": {
       "icon": "electron/icon.png",
       "category": "Development",
+      "maintainer": "Rajesh Narwal <rajesh@grassroot.digital>",
       "target": ["AppImage", "deb"]
     }
   },
