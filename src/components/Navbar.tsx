@@ -17,6 +17,8 @@ import {
   Layers,
 } from 'lucide-react';
 
+import { isDesktopEnvironment, isMacDesktopEnvironment } from '../utils/platform';
+
 interface NavbarProps {
   theme: 'dark' | 'midnight' | 'light';
   onThemeChange: (theme: 'dark' | 'midnight' | 'light') => void;
@@ -34,22 +36,23 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCodeExport,
   onClearWorkspace,
 }) => {
+  const isDesktop = isDesktopEnvironment();
+  const isMac = isMacDesktopEnvironment();
+
   return (
-    <header className="bg-background-secondary border-b border-border select-none sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+    <header className={`bg-background-secondary border-b border-border select-none sticky top-0 z-40 app-drag-region ${
+      isMac ? 'pl-24 pr-4' : 'px-4'
+    }`}>
+      <div className="max-w-7xl mx-auto h-14 flex items-center justify-between">
         {/* Left: Brand & Product Info */}
-        <div className="flex items-center space-x-3">
-          <a
-            href="https://grassroot.digital"
-            className="flex items-center space-x-2.5 group"
-            title="Grassroot Digital Ecosystem"
-          >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-green-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+        <div className="flex items-center space-x-3 no-drag">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-green-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
               <span className="font-mono font-black text-xs tracking-tighter">.*</span>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center space-x-1.5">
-                <span className="font-heading font-bold text-sm tracking-tight text-text-primary group-hover:text-accent transition-colors">
+                <span className="font-heading font-bold text-sm tracking-tight text-text-primary">
                   RegexForge
                 </span>
                 <span className="text-[10px] px-1.5 py-0.2 rounded-md bg-emerald-500/15 text-emerald-400 font-mono font-bold border border-emerald-500/30">
@@ -60,43 +63,45 @@ export const Navbar: React.FC<NavbarProps> = ({
                 by grassroot.digital
               </span>
             </div>
-          </a>
-
-          {/* Ecosystem Navigation Links */}
-          <div className="hidden lg:flex items-center space-x-1 pl-4 border-l border-border/80 text-xs">
-            <a
-              href="https://grassroot.digital"
-              className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
-            >
-              <Home className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Hub</span>
-            </a>
-            <a
-              href="https://endly.grassroot.digital"
-              className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
-            >
-              <Zap className="w-3.5 h-3.5 text-orange-400" />
-              <span>Endly API</span>
-            </a>
-            <a
-              href="https://tokenlens.grassroot.digital"
-              className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
-            >
-              <KeyRound className="w-3.5 h-3.5 text-purple-400" />
-              <span>TokenLens JWT</span>
-            </a>
-            <a
-              href="https://jsonlens.grassroot.digital"
-              className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
-            >
-              <FileCode2 className="w-3.5 h-3.5 text-cyan-400" />
-              <span>JSONLens</span>
-            </a>
           </div>
+
+          {/* Ecosystem Navigation Links (Shown ONLY on Web, hidden on Desktop App) */}
+          {!isDesktop && (
+            <div className="hidden lg:flex items-center space-x-1 pl-4 border-l border-border/80 text-xs">
+              <a
+                href="https://grassroot.digital"
+                className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
+              >
+                <Home className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Hub</span>
+              </a>
+              <a
+                href="https://endly.grassroot.digital"
+                className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
+              >
+                <Zap className="w-3.5 h-3.5 text-orange-400" />
+                <span>Endly API</span>
+              </a>
+              <a
+                href="https://tokenlens.grassroot.digital"
+                className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
+              >
+                <KeyRound className="w-3.5 h-3.5 text-purple-400" />
+                <span>TokenLens JWT</span>
+              </a>
+              <a
+                href="https://jsonlens.grassroot.digital"
+                className="px-2.5 py-1 rounded-lg text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-colors flex items-center space-x-1"
+              >
+                <FileCode2 className="w-3.5 h-3.5 text-cyan-400" />
+                <span>JSONLens</span>
+              </a>
+            </div>
+          )}
         </div>
 
         {/* Right: Actions, Presets, Code Export, Theme Switcher */}
-        <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3 no-drag">
           {/* Presets Button */}
           <button
             onClick={onOpenPresets}
@@ -127,17 +132,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span className="hidden sm:inline">Export Code</span>
           </button>
 
-          {/* Desktop App Download */}
-          <a
-            href="https://github.com/rjnarwal/regexforge/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs text-emerald-400 font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
-            title="Download RegexForge Native Desktop App (Mac / Windows / Linux)"
-          >
-            <span className="hidden sm:inline">Desktop App ▾</span>
-            <span className="sm:hidden">App ▾</span>
-          </a>
+          {/* Desktop App Download (Only on Web) */}
+          {!isDesktop && (
+            <a
+              href="https://github.com/rjnarwal/regexforge/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs text-emerald-400 font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+              title="Download RegexForge Native Desktop App (Mac / Windows / Linux)"
+            >
+              <span className="hidden sm:inline">Desktop App ▾</span>
+              <span className="sm:hidden">App ▾</span>
+            </a>
+          )}
 
           {/* Clear Workspace */}
           <button
