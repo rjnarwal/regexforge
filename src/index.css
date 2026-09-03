@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: #0a0d14;
+    --color-bg-secondary: #0f1422;
+    --color-bg-tertiary: #161c30;
+    --color-bg-elevated: #1e2640;
+    --color-border-primary: #252e4d;
+    --color-border-secondary: #1a2238;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-accent: #10b981;
+    --color-accent-hover: #059669;
+    --color-accent-muted: rgba(16, 185, 129, 0.15);
+  }
+
+  .dark {
+    --color-bg-primary: #0a0d14;
+    --color-bg-secondary: #0f1422;
+    --color-bg-tertiary: #161c30;
+    --color-bg-elevated: #1e2640;
+    --color-border-primary: #252e4d;
+    --color-border-secondary: #1a2238;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-accent: #10b981;
+    --color-accent-hover: #059669;
+    --color-accent-muted: rgba(16, 185, 129, 0.15);
+    color-scheme: dark;
+  }
+
+  .midnight {
+    --color-bg-primary: #060913;
+    --color-bg-secondary: #0b1120;
+    --color-bg-tertiary: #111a33;
+    --color-bg-elevated: #1a2547;
+    --color-border-primary: #1f2d57;
+    --color-border-secondary: #162142;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
+    --color-accent: #3b82f6;
+    --color-accent-hover: #2563eb;
+    --color-accent-muted: rgba(59, 130, 246, 0.15);
+    color-scheme: dark;
+  }
+
+  .light {
+    --color-bg-primary: #f8fafc;
+    --color-bg-secondary: #ffffff;
+    --color-bg-tertiary: #f1f5f9;
+    --color-bg-elevated: #e2e8f0;
+    --color-border-primary: #cbd5e1;
+    --color-border-secondary: #e2e8f0;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #64748b;
+    --color-accent: #059669;
+    --color-accent-hover: #047857;
+    --color-accent-muted: rgba(5, 150, 105, 0.15);
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  input, textarea, select {
+    color: var(--color-text-primary) !important;
+  }
+
+  .light input, .light textarea, .light select {
+    color: #0f172a !important;
+  }
+}

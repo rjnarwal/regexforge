@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+      <!-- Background Squircle -->
+      <rect width="1024" height="1024" rx="228" fill="#081410"/>
+      <rect width="1016" height="1016" x="4" y="4" rx="224" fill="none" stroke="url(#borderGrad)" stroke-width="8"/>
+      <rect width="900" height="900" x="62" y="62" rx="190" fill="url(#bgGrad)" opacity="0.15"/>
+      
+      <!-- Regex Dot-Star (.*) & Slashes -->
+      <g filter="url(#dropShadow)">
+        <!-- Leading Slash / -->
+        <line x1="260" y1="740" x2="380" y2="280" stroke="url(#textGrad)" stroke-width="56" stroke-linecap="round"/>
+        <!-- Dot . -->
+        <circle cx="470" cy="680" r="48" fill="url(#textGrad)"/>
+        <!-- Star * -->
+        <g transform="translate(680, 512)">
+          <line x1="0" y1="-140" x2="0" y2="140" stroke="url(#textGrad)" stroke-width="52" stroke-linecap="round"/>
+          <line x1="-121" y1="-70" x2="121" y2="70" stroke="url(#textGrad)" stroke-width="52" stroke-linecap="round"/>
+          <line x1="-121" y1="70" x2="121" y2="-70" stroke="url(#textGrad)" stroke-width="52" stroke-linecap="round"/>
+        </g>
+      </g>
+      
+      <defs>
+        <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#34d399" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#059669" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#10b981"/>
+          <stop offset="100%" stop-color="#047857"/>
+        </linearGradient>
+        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#d1fae5"/>
+          <stop offset="30%" stop-color="#34d399"/>
+          <stop offset="100%" stop-color="#059669"/>
+        </linearGradient>
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="24" stdDeviation="36" flood-color="#10b981" flood-opacity="0.6"/>
+        </filter>
+      </defs>
+    </svg>
