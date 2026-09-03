@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Sparkles,
   ExternalLink,
@@ -18,6 +18,19 @@ import {
 } from 'lucide-react';
 
 import { isDesktopEnvironment, isMacDesktopEnvironment } from '../utils/platform';
+import { DownloadDesktopModal, AppDownloadConfig } from './DownloadDesktopModal';
+
+const REGEXFORGE_DOWNLOAD_CONFIG: AppDownloadConfig = {
+  appName: 'RegexForge',
+  tagline: 'Visual Regex Studio & Multi-Language Code Generator',
+  version: 'v1.0.0',
+  downloads: {
+    macArm: 'https://github.com/rjnarwal/regexforge/releases/download/v1.0.0/RegexForge-1.0.0-arm64.dmg',
+    macIntel: 'https://github.com/rjnarwal/regexforge/releases/download/v1.0.0/RegexForge-1.0.0.dmg',
+    winX64: 'https://github.com/rjnarwal/regexforge/releases/download/v1.0.0/RegexForge-Setup-1.0.0.exe',
+    linuxAppImage: 'https://github.com/rjnarwal/regexforge/releases/download/v1.0.0/RegexForge-1.0.0.AppImage',
+  },
+};
 
 interface NavbarProps {
   theme: 'dark' | 'midnight' | 'light';
@@ -36,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCodeExport,
   onClearWorkspace,
 }) => {
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const isDesktop = isDesktopEnvironment();
   const isMac = isMacDesktopEnvironment();
 
@@ -114,16 +128,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Desktop App Download (Only on Web) */}
           {!isDesktop && (
-            <a
-              href="https://github.com/rjnarwal/regexforge/releases"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs text-emerald-400 font-semibold flex items-center space-x-1.5 transition-all shadow-sm"
+            <button
+              onClick={() => setIsDownloadModalOpen(true)}
+              className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs text-emerald-400 font-semibold flex items-center space-x-1.5 transition-all shadow-sm cursor-pointer"
               title="Download RegexForge Native Desktop App (Mac / Windows / Linux)"
             >
               <span className="hidden sm:inline">Desktop App ▾</span>
               <span className="sm:hidden">App ▾</span>
-            </a>
+            </button>
           )}
 
           {/* Clear Workspace */}
@@ -167,6 +179,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Direct OS Binary Download Modal */}
+      {!isDesktop && (
+        <DownloadDesktopModal
+          isOpen={isDownloadModalOpen}
+          onClose={() => setIsDownloadModalOpen(false)}
+          config={REGEXFORGE_DOWNLOAD_CONFIG}
+        />
+      )}
     </header>
   );
 };
